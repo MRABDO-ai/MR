@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>instegram</title>
+    <style>
+        /* إعدادات أساسية */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #fafafa;
+            color: #262626;
+        }
+
+        /* تصميم صندوق تسجيل الدخول وإنشاء الحساب */
+        .container {
+            background-color: #fff;
+            width: 350px;
+            padding: 40px 20px;
+            border: 1px solid #dbdbdb;
+            text-align: center;
+            border-radius: 8px;
+            display: none; /* سيتم إظهارها حسب الحاجة */
+        }
+
+        .container.active {
+            display: block;
+        }
+
+        .container h1 {
+            font-size: 36px;
+            font-family: 'Courier New', Courier, monospace;
+            color: #262626;
+            margin-bottom: 20px;
+        }
+
+        .container input[type="text"],
+        .container input[type="password"],
+        .container input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #dbdbdb;
+            border-radius: 3px;
+            background-color: #fafafa;
+            outline: none;
+        }
+
+        .container button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #0095f6;
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .container p {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #8e8e8e;
+        }
+
+        .container a {
+            color: #0095f6;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container a:hover {
+            text-decoration: underline;
+        }
+
+        .login-footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #8e8e8e;
+        }
+    </style>
+    <script>
+        function toggleForm(formType) {
+            const loginContainer = document.getElementById('login-container');
+            const registerContainer = document.getElementById('register-container');
+
+            if (formType === 'login') {
+                loginContainer.classList.add('active');
+                registerContainer.classList.remove('active');
+            } else if (formType === 'register') {
+                registerContainer.classList.add('active');
+                loginContainer.classList.remove('active');
+            }
+        }
+    </script>
+</head>
+<body onload="toggleForm('login')">
+
+<div id="login-container" class="container">
+    <h1>Instagram</h1>
+    <form>
+        <input type="text" placeholder="رقم الهاتف، اسم المستخدم أو البريد الإلكتروني" required>
+        <input type="password" placeholder="كلمة المرور" required>
+        <button type="submit">تسجيل الدخول</button>
+    </form>
+    <p>أو</p>
+    <p>هل نسيت كلمة المرور؟ <a href="#">اضغط هنا</a></p>
+</div>
+
+<div id="register-container" class="container">
+    <h1>إنشاء حساب جديد</h1>
+    <form>
+        <input type="text" placeholder="الاسم الكامل" required>
+        <input type="text" placeholder="اسم المستخدم" required>
+        <input type="email" placeholder="البريد الإلكتروني" required>
+        <input type="password" placeholder="كلمة المرور" required>
+        <button type="submit">إنشاء حساب</button>
+    </form>
+</div>
+
+<div class="login-footer">
+    <span id="toggle-message">ليس لديك حساب؟ <a href="#" onclick="toggleForm('register'); return false;">إنشاء حساب جديد</a></span>
+    <span id="back-to-login" style="display: none;">لديك حساب؟ <a href="#" onclick="toggleForm('login'); return false;">تسجيل الدخول</a></span>
+</div>
+
+<script>
+    function toggleForm(formType) {
+        const loginContainer = document.getElementById('login-container');
+        const registerContainer = document.getElementById('register-container');
+        const toggleMessage = document.getElementById('toggle-message');
+        const backToLogin = document.getElementById('back-to-login');
+
+        if (formType === 'login') {
+            loginContainer.classList.add('active');
+            registerContainer.classList.remove('active');
+            toggleMessage.style.display = 'inline';
+            backToLogin.style.display = 'none';
+        } else if (formType === 'register') {
+            registerContainer.classList.add('active');
+            loginContainer.classList.remove('active');
+            toggleMessage.style.display = 'none';
+            backToLogin.style.display = 'inline';
+        }
+    }
+</script>
+
+</body>
+</html>
